@@ -22,9 +22,14 @@ module.exports = function sanitizer_plugin(md, options) {
   var runBalancer = false;
   var j;
 
-
-  var allowedTags = [ 'a', 'b', 'blockquote', 'code', 'em', 'h1', 'h2', 'h3', 'h4', 'h5',
-                     'h6', 'li', 'ol', 'p', 'pre', 's', 'sub', 'sup', 'strong', 'ul' ];
+  // update allowed tags list per https://github.com/jch/html-pipeline/blob/642e9226929fa667e3513233c130186195880b24/lib/html/pipeline/sanitization_filter.rb#L42-L45
+  var allowedTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8', 'br', 'b',
+                     'i', 'strong', 'em', 'a', 'pre', 'code', 'img', 'tt', 'div',
+                     'ins', 'del', 'sup', 'sub', 'p', 'ol', 'ul', 'table', 'thead',
+                     'tbody', 'tfoot', 'blockquote', 'dl', 'dt', 'dd', 'kbd', 'q',
+                     'samp', 'var', 'hr', 'ruby', 'rt', 'rp', 'li', 'tr', 'td', 'th',
+                     's', 'strike', 'summary', 'details', 'caption', 'figure', 'figcaption'
+                    ];
   var openTagCount = new Array(allowedTags.length);
   var removeTag = new Array(allowedTags.length);
   for (j = 0; j < allowedTags.length; j++) { openTagCount[j] = 0; }
@@ -106,6 +111,7 @@ module.exports = function sanitizer_plugin(md, options) {
       }
 
       // whitelisted tags
+      // todo
       match = tag.match(/<(\/?)(b|blockquote|code|em|h[1-6]|li|ol(?: start="\d+")?|p|pre|s|sub|sup|strong|ul)>/i);
       if (match && !/<\/ol start="\d+"/i.test(tag)) {
         runBalancer = true;
