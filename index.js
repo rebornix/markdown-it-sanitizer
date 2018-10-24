@@ -28,7 +28,8 @@ module.exports = function sanitizer_plugin(md, options) {
                      'ins', 'del', 'sup', 'sub', 'p', 'ol', 'ul', 'table', 'thead',
                      'tbody', 'tfoot', 'blockquote', 'dl', 'dt', 'dd', 'kbd', 'q',
                      'samp', 'var', 'hr', 'ruby', 'rt', 'rp', 'li', 'tr', 'td', 'th',
-                     's', 'strike', 'summary', 'details', 'caption', 'figure', 'figcaption'
+                     's', 'strike', 'summary', 'details', 'caption', 'figure', 'figcaption',
+                     'details', 'summary'
                     ];
   var openTagCount = new Array(allowedTags.length);
   var removeTag = new Array(allowedTags.length);
